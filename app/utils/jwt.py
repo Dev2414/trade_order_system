@@ -1,10 +1,10 @@
 from jose import jwt,JWTError
 from datetime import datetime, timedelta
+import os
 
-SECRET_KEY = "your_secret_key"
+SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
-
 
 def create_token(data: dict):
     payload = data.copy()
@@ -18,3 +18,4 @@ def verify_token(token: str):
         return payload
     except JWTError:
         return None
+    

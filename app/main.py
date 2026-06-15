@@ -9,26 +9,26 @@ from app.models.orders import Order
 from app.routers import auth, user, stocks, orders, admin, ai
 
 
-app = FastAPI()
+ap = FastAPI()
 
 # CREATE ALL TABLES
 Base.metadata.create_all(bind=engine)
 
 # INCLUDE ALL ROUTERS
-app.include_router(auth.router)
-app.include_router(user.router)
-app.include_router(stocks.router)
-app.include_router(orders.router)
-app.include_router(admin.router)
-app.include_router(ai.router) 
+ap.include_router(auth.router)
+ap.include_router(user.router)
+ap.include_router(stocks.router)
+ap.include_router(orders.router)
+ap.include_router(admin.router)
+ap.include_router(ai.router) 
 
 # HOME ROUTE
-@app.get("/")
+@ap.get("/")
 def home():
     return {"message": "Trade Order System Running"}
 
 # GLOBAL ERROR HANDLER
-@app.exception_handler(Exception)
+@ap.exception_handler(Exception)
 async def global_exception_handler(
     request: Request,
     exc: Exception
